@@ -1,0 +1,3 @@
+[submodule "Arduino/arduino-spp13"]
+	path = Arduino/arduino-spp13
+	url = git@github.com:jsiot/arduino-spp13.git
