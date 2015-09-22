@@ -2,26 +2,54 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Arduino LED Web</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Arduino LED Web Control</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
 </head>
-<body>
-<div data-role="page" id="main">
-    <label for="door">Lampu LED :</label>
-    <select name="door" id="door1">
-        <option value="0">Off</option>
-        <option value="1">On</option>
-    </select>
-</div>
+<body class="mdl-color--white">
+<section class="mdl-grid mdl-components__page">
+    <div>
+        
+    </div>
+    <div class="mdl-cell mdl-cell--12-col demo">
+        <div class="divpadding"></div>
+        <div class="card-square mdl-card mdl-shadow--2dp">
+                <div class="mdl-title mdl-card--expand statusAreaOff" id="statusArea">
+                   <i class="material-icons md-128 ledColorOff" id="lampStatus">&#xE430;</i>
+                </div>
+                <div class="mdl-card__actions">
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="led">
+                        <input type="checkbox" id="led" class="mdl-switch__input" />
+                        <span class="mdl-switch__label"></span>
+                    </label>
+                </div>
+            </div>
+        </div>    
+        <div class="divpadding"></div>
+    </div>
+</section>
+<script src="/js/material.min.js"></script>
 <script src="/js/jquery-1.10.2.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script>
     var iosocket = io.connect('http://localhost:3000');
-    $('#door1').on('change', function () {
-        var value = $('#door1').val();
-        console.log(value);
-        iosocket.emit('button', {lampstatus: value});
-    });
+  
+    $('#led').on('change', function(){
+        if ($(this).is(":checked")) {
+           console.log('ON');
+           $('#statusArea').removeClass('statusAreaOff').addClass('statusAreaOn');
+           $('#lampStatus').removeClass('ledColorOff').addClass('ledColorOn');
+           iosocket.emit('button', {lampstatus: "1"});    
+        } else {
+           console.log('OFF');
+           $('#statusArea').removeClass('statusAreaOn').addClass('statusAreaOff');
+           $('#lampStatus').removeClass('ledColorOn').addClass('ledColorOff');
+           iosocket.emit('button', {lampstatus: "0"});
+        }
+    })
 </script>
 </body>
 </html>
