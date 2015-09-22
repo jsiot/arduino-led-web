@@ -8,9 +8,11 @@ Control Arduino LED trough Web
 
 ##Install
 
+On PC install Node.js v0.10.x and install all the depedencies
+
     $ npm install
     
-This app use port serial
+Use file `SerialIo.ino` from folder Arduino and upload to board Arduino. This app use port serial
 
     /dev/ttyACM0
 
