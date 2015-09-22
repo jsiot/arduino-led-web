@@ -1,9 +1,18 @@
 #Arduino LED Web
 
-Control Arduino LED trough Web
-
 
 ![onfoo ui](https://raw.githubusercontent.com/jsiot/arduino-led-web/master/screenshot/onoff.png)
+
+
+Control Arduino LED trough Web
+
+##Install
+
+    $ npm install
+    
+This app use port serial
+
+    /dev/ttyACM0
 
 
 ---
