@@ -1,0 +1,61 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.onoff {
+  font-family: 'And Black', 'Helvetica', 'Arial', sans-serif;
+  line-height: 1;
+  color: #767777;
+  font-weight: 300;
+  font-size: 60px;
+}
+
+.card-square {
+  width: 256px;
+  height: 256px;
+}
+
+.mdl-card__actions {
+  padding: 20px 45%;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.mdl-components__page {
+  padding-top: 170px;
+  display: table;
+  min-height: 1000px;
+}
+
+.divpadding {
+  width: 50%;
+}
+
+.mdl-title {
+  text-align: center;
+  padding-top: 15%;
+  color: white;
+}
+
+.demo {
+  display: table-row;
+}
+
+.material-icons.md-128 { 
+  font-size: 128px; 
+}
+
+.ledColorOff {
+  color: rgba(0,0,0,0.2) !important;
+}
+
+.ledColorOn {
+  color: #ff4081 !important;
+}
+.statusAreaOff {
+	background-color: white !important;
+}
+
+.statusAreaOn {
+    background-color: white !important;	
+}
