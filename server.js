@@ -4,8 +4,8 @@ var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 var serialPort = require('serialport').SerialPort;
 
+var PORT = 3000;
 var portName = '/dev/ttyACM0';
-var readData = "";
 var sp = new serialPort(portName, {
     baudRate: 57600,
     dataBits: 8,
@@ -13,7 +13,6 @@ var sp = new serialPort(portName, {
     stopBits: 1,
     flowControl: false,
 });
-var PORT = 3000;
 
 io.sockets.on('connection', function (socket, debug) {
     if (debug == false) {
@@ -21,12 +20,12 @@ io.sockets.on('connection', function (socket, debug) {
     }
     socket.on('button', function (data) {
         var status = data.lampstatus;
-        console.log("data from client: " + status);
+        console.log("[Client] " + status);
 
         sp.open(function () {
             console.log('open');
             sp.on('data', function(data) {
-                console.log('data received: ' + data);
+                console.log('[Received] ' + data);
             });
 
             sp.write(status, function(err, result){
@@ -46,5 +45,5 @@ app.get('/', function (req, res) {
 });
 
 server.listen(PORT, function(){
-    console.log('listen on port '+PORT);    
+    console.log('Listen on port '+PORT);    
 });
