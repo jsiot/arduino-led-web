@@ -14,30 +14,26 @@ var sp = new serialPort(portName, {
     flowControl: false,
 });
 
+app.use(express.static(__dirname + '/public'));
+
 io.sockets.on('connection', function (socket, debug) {
     if (debug == false) {
-        socketServer.set('log level', 1);
+        socket.set('log level', 1);
     }
     socket.on('button', function (data) {
         var status = data.lampstatus;
         console.log("[Client] " + status);
 
         sp.open(function () {
-            console.log('open');
             sp.on('data', function(data) {
                 console.log('[Received] ' + data);
             });
 
             sp.write(status, function(err, result){
                 if(err) console.log('[ERROR] '+err);
-                console.log(result);
             });
         });
     })
-});
-
-app.configure(function () {
-    app.use(express.static(__dirname + '/public'));
 });
 
 app.get('/', function (req, res) {
